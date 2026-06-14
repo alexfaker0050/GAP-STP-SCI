@@ -33,5 +33,5 @@ python validate.py
 ```
 
 ## Acknowledgements
-* This project is built upon the open-source **[CACTI](https://github.com/ucaswangls/cacti)** framework.
+* This project is built upon the open-source **[CACTI](https://github.com/ucaswangls/cacti)** framework and the foundational unfolding framework from **[GAP-net](https://github.com/mengziyi64/GAP-net)**.
 * The 3D Blind Calibration algorithm is built upon the methodology and open-source code from **[Physics_World_Model](https://github.com/integritynoble/Physics_World_Model)**, as detailed in **[arXiv:2603.04538](https://arxiv.org/abs/2603.04538v1)**.
