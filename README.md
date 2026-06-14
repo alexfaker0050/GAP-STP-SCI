@@ -1,47 +1,34 @@
 # GAP-STPNet: Dynamic Spatio-Temporal Parallel Network for Video SCI
 
 ## 📖 Introduction
-Video Snapshot Compressive Imaging (SCI) faces a fundamental challenge: traditional convolutional networks (like U-Net) excel at spatial artifact suppression but often lack temporal coherence, while video-specific priors (like FastDVDnet) capture temporal dynamics well but struggle when faced with severe spatial aliasing.
+Video Snapshot Compressive Imaging (SCI) faces a fundamental challenge in reconstructing high-dimensional video data from 2D compressed measurements. Traditional convolutional architectures (e.g., U-Net) provide strong spatial artifact suppression but frequently neglect temporal consistency. Conversely, video-specific priors (e.g., FastDVDnet) capture temporal dynamics effectively but exhibit limited capacity for handling severe spatial aliasing.
 
-**GAP-STPNet** resolves this bottleneck by introducing a novel **Spatio-Temporal Parallel (STP)** architecture. Embedded within the Generalized Alternating Projection (GAP) framework, our model processes spatial and temporal priors simultaneously in two parallel branches. A custom **Dynamic Fusion mechanism** then adaptively fuses these features, achieving superior reconstruction quality by leveraging the best of both domains.
+To address these limitations, we propose the **Spatio-Temporal Parallel Network (GAP-STPNet)**. Embedded within the Generalized Alternating Projection (GAP) optimization framework, our architecture deploys spatial and temporal priors simultaneously in parallel branches. A novel **Dynamic Fusion Cell** is introduced to adaptively compute voxel-wise attention weights, seamlessly integrating spatial details and temporal coherence at each unfolding stage.
 
-Furthermore, real-world SCI hardware inevitably suffers from physical mask misalignment. To bridge the gap between simulation and optical experiments, this repository also introduces a robust **3D Blind Calibration** algorithm to computationally correct complex translation and rotation mismatches.
+Furthermore, to bridge the gap between ideal simulation environments and real-world optical experiments, this repository introduces a robust **3D Blind Calibration** algorithm. This method computationally corrects complex spatial translation and angular rotation mismatches of the physical mask.
 
 ## 🧠 Architecture Overview
-1. **Spatial Branch (U-Net)**: Dedicated to suppressing high-frequency spatial aliasing and learning robust intra-frame representations.
-2. **Temporal Branch (FastDVDnet)**: Acts as a powerful temporal prior to maintain motion continuity and inter-frame consistency.
-3. **Dynamic Fusion Cell**: A self-adaptive attention mechanism that computes spatial-temporal weights to optimally and dynamically combine the two branches at each GAP unfolding stage.
-4. **3D Blind Calibration**: A coarse-to-fine physical mismatch optimization grid-search that corrects sub-pixel shifts and angular rotations of the coded aperture.
+* **Spatial Optimization Branch (U-Net)**: Functions as a robust spatial prior to suppress high-frequency aliasing and extract intra-frame representations.
+* **Temporal Optimization Branch (FastDVDnet)**: Serves as a dynamic temporal prior to enforce motion continuity and inter-frame consistency across the reconstructed sequence.
+* **Dynamic Hybrid Fusion**: A self-adaptive attention mechanism that dynamically calculates fusion weights to optimally combine the output manifolds of the two parallel branches.
+* **3D Blind Calibration**: A coarse-to-fine physical mismatch optimization grid-search algorithm designed to calibrate sub-pixel shifts and rotational errors of the coded aperture mask.
 
-## 🚀 Getting Started
-*(The following steps guide you on how to set up the environment and run the code.)*
-
-### 1. Install Dependencies
-Ensure you have PyTorch installed, then run:
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Run 3D Blind Calibration
-To execute the physical mask mismatch calibration (translation + rotation) on the Kerr effect data:
-```bash
-python test_blind_calibration.py
-```
-
-### 3. Validate Model
-To run standard validation and evaluate the reconstruction quality of GAP-STPNet:
-```bash
-python validate.py
-```
-
-## 📁 Directory Structure
-- `model.py`: The core architecture definition for the Hybrid Dynamic Fusion GAP-STP network.
-- `test_blind_calibration.py`: Evaluates the robust 3D blind calibration strategy.
-- `train.py` / `validate.py`: Training and evaluation scripts.
-- `cacti/`: Core dependencies (extracted and refined from the CACTI framework).
-- `checkpoints/`: Directory for pretrained model weights.
-- `datasets/`: Includes masks and sample synthetic data.
+## 📁 Repository Structure
+* `model.py`
+  Contains the core PyTorch implementation of the `GAP_STP_Net` architecture, including the parallel branches and the dynamic fusion mechanism.
+* `train.py`
+  The primary optimization script for training GAP-STPNet. **Note: Pre-trained weights for the final GAP-STPNet are not provided in this repository. Researchers must execute this script to train the end-to-end model on their specific datasets.**
+* `validate.py`
+  The evaluation script utilized for quantitative and qualitative assessment of the reconstructed video sequences against ground-truth data.
+* `test_blind_calibration.py`
+  The implementation of the 3D blind calibration algorithm, assessing reconstruction robustness under simulated mask misalignment scenarios.
+* `cacti/`
+  A suite of essential foundational dependencies and utility functions, refined from the established CACTI framework.
+* `checkpoints/`
+  Stores the underlying base priors (e.g., baseline FastDVDnet and GAP-net initializations) utilized for network warmup.
+* `datasets/`
+  Directory designated for storing physical modulation masks and synthetic spectral/video data.
 
 ## 🙏 Acknowledgements
-* This project is built upon the open-source **[CACTI](https://github.com/ucaswangls/cacti)** framework and the foundational unfolding framework from **[GAP-net](https://github.com/mengziyi64/GAP-net)**.
-* The 3D Blind Calibration algorithm is built upon the methodology and open-source code from **[Physics_World_Model](https://github.com/integritynoble/Physics_World_Model)**, as detailed in **[arXiv:2603.04538](https://arxiv.org/abs/2603.04538v1)**.
+* This research builds upon the open-source **[CACTI](https://github.com/ucaswangls/cacti)** framework and the foundational unfolding architectures introduced in **[GAP-net](https://github.com/mengziyi64/GAP-net)**.
+* The 3D Blind Calibration methodology is inspired by and builds upon the open-source implementations found in **[Physics_World_Model](https://github.com/integritynoble/Physics_World_Model)**, as detailed in **[arXiv:2603.04538](https://arxiv.org/abs/2603.04538v1)**.
