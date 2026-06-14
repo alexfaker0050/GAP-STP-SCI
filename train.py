@@ -60,7 +60,7 @@ def main():
     model = GAP_STP_Net(n_stages=n_stages, nC=NC).to(device)
     
     # --- CRITICAL: PRELOAD GAP-NET UNET WEIGHTS ---
-    gapnet_path = os.path.join(BASE_DIR, "CACTI", "checkpoints", "gapnet", "gapnet.pth")
+    gapnet_path = os.path.join(SCRIPT_DIR, "checkpoints", "gapnet", "gapnet.pth")
     if os.path.exists(gapnet_path):
         state = torch.load(gapnet_path, map_location=device)
         state = state.get("model_state_dict", state)
@@ -81,7 +81,7 @@ def main():
         print("Loaded pre-trained baseline U-Nets (Adapted to 4 frames)!")
     
     # --- PRELOAD FASTDVDNET (PnP Prior) ---
-    fastdvd_path = os.path.join(BASE_DIR, "CACTI", "checkpoints", "fastdvd", "fastdvd_gray.pth")
+    fastdvd_path = os.path.join(SCRIPT_DIR, "checkpoints", "fastdvd", "fastdvd_gray.pth")
     if os.path.exists(fastdvd_path):
         model.fastdvd.load_state_dict(torch.load(fastdvd_path, map_location=device))
         print("Loaded Universal Video PnP Prior (FastDVDnet)!")
@@ -108,8 +108,8 @@ def main():
     # --- 4. Training Loop ---
     from torch.utils.tensorboard import SummaryWriter
     
-    save_dir = os.path.join(BASE_DIR, "Research_GAP_STP_Dynamic_Hybrid", "checkpoints")
-    log_dir = os.path.join(BASE_DIR, "Research_GAP_STP_Dynamic_Hybrid", "logs")
+    save_dir = os.path.join(SCRIPT_DIR, "checkpoints", "trained_models")
+    log_dir = os.path.join(SCRIPT_DIR, "logs")
     os.makedirs(save_dir, exist_ok=True)
     os.makedirs(log_dir, exist_ok=True)
     
