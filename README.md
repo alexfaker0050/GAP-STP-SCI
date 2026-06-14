@@ -13,6 +13,29 @@ Furthermore, to bridge the gap between ideal simulation environments and real-wo
 * **Dynamic Hybrid Fusion**: A self-adaptive attention mechanism that dynamically calculates fusion weights to optimally combine the output manifolds of the two parallel branches.
 * **3D Blind Calibration**: A coarse-to-fine physical mismatch optimization grid-search algorithm designed to calibrate sub-pixel shifts and rotational errors of the coded aperture mask.
 
+## 📊 Quantitative Results
+We evaluate GAP-STPNet on standard Video SCI benchmark datasets. The average performance across 6 scenes demonstrates state-of-the-art reconstruction fidelity.
+
+| Scene | PSNR (dB) | SSIM |
+| :--- | :---: | :---: |
+| Aerial (Cr=32) | 29.01 | 0.9109 |
+| Crash (Cr=32) | 28.16 | 0.9315 |
+| Drop (Cr=8) | 41.19 | 0.9890 |
+| Kobe (Cr=8) | 31.80 | 0.9333 |
+| Runner (Cr=8) | 37.68 | 0.9717 |
+| Traffic (Cr=8)| 27.99 | 0.9250 |
+| **Average** | **32.64** | **0.9435** |
+
+## 🎬 Qualitative Results
+Visual comparison of the reconstructed high-speed frames against the ground truth on complex scenes.
+
+| Scene | Ground Truth | GAP-STPNet (Reconstruction) |
+| :---: | :---: | :---: |
+| **Kobe** (Cr=8) | <img src="gif/kobe_gt.gif" width="256"> | <img src="gif/kobe_recon.gif" width="256"> |
+| **Traffic** (Cr=8) | <img src="gif/traffic_gt.gif" width="256"> | <img src="gif/traffic_recon.gif" width="256"> |
+| **Crash** (Cr=32) | <img src="gif/crash32_gt.gif" width="256"> | <img src="gif/crash32_recon.gif" width="256"> |
+| **Drop** (Cr=8) | <img src="gif/drop8_gt.gif" width="256"> | <img src="gif/drop8_recon.gif" width="256"> |
+
 ## 📁 Repository Structure
 * `model.py`
   Contains the core PyTorch implementation of the `GAP_STP_Net` architecture, including the parallel branches and the dynamic fusion mechanism.
