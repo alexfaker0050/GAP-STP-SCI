@@ -18,23 +18,23 @@ We evaluate GAP-STPNet on standard Video SCI benchmark datasets. The average per
 
 | Scene | PSNR (dB) | SSIM |
 | :--- | :---: | :---: |
-| Aerial (Cr=32) | 29.01 | 0.9109 |
-| Crash (Cr=32) | 28.16 | 0.9315 |
-| Drop (Cr=8) | 41.19 | 0.9890 |
-| Kobe (Cr=8) | 31.80 | 0.9333 |
-| Runner (Cr=8) | 37.68 | 0.9717 |
-| Traffic (Cr=8)| 27.99 | 0.9250 |
+| Aerial | 29.01 | 0.9109 |
+| Crash | 28.16 | 0.9315 |
+| Drop | 41.19 | 0.9890 |
+| Kobe | 31.80 | 0.9333 |
+| Runner | 37.68 | 0.9717 |
+| Traffic | 27.99 | 0.9250 |
 | **Average** | **32.64** | **0.9435** |
 
 ## 🎬 Qualitative Results
-Visual comparison of the reconstructed high-speed frames against the ground truth on complex scenes.
+Visual comparison of the reconstructed frames against the ground truth across a variety of representative scenes, ranging from simple motions to complex structural details.
 
 | Scene | Ground Truth | GAP-STPNet (Reconstruction) |
 | :---: | :---: | :---: |
-| **Kobe** (Cr=8) | <img src="gif/kobe_gt.gif" width="256"> | <img src="gif/kobe_recon.gif" width="256"> |
-| **Traffic** (Cr=8) | <img src="gif/traffic_gt.gif" width="256"> | <img src="gif/traffic_recon.gif" width="256"> |
-| **Crash** (Cr=32) | <img src="gif/crash32_gt.gif" width="256"> | <img src="gif/crash32_recon.gif" width="256"> |
-| **Drop** (Cr=8) | <img src="gif/drop8_gt.gif" width="256"> | <img src="gif/drop8_recon.gif" width="256"> |
+| **Kobe** | <img src="gif/kobe_gt.gif" width="256"> | <img src="gif/kobe_recon.gif" width="256"> |
+| **Traffic** | <img src="gif/traffic_gt.gif" width="256"> | <img src="gif/traffic_recon.gif" width="256"> |
+| **Crash** | <img src="gif/crash32_gt.gif" width="256"> | <img src="gif/crash32_recon.gif" width="256"> |
+| **Drop** | <img src="gif/drop8_gt.gif" width="256"> | <img src="gif/drop8_recon.gif" width="256"> |
 
 ## 📁 Repository Structure
 * `model.py`
