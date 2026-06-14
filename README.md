@@ -27,7 +27,7 @@ Furthermore, to bridge the gap between ideal simulation environments and real-wo
 * `checkpoints/`
   Stores the underlying base priors (e.g., baseline FastDVDnet and GAP-net initializations) utilized for network warmup.
 * `datasets/`
-  Directory designated for storing physical modulation masks and synthetic spectral/video data.
+  Directory designated for storing physical modulation masks and synthetic video data.
 
 ## 🙏 Acknowledgements
 * This research builds upon the open-source **[CACTI](https://github.com/ucaswangls/cacti)** framework and the foundational unfolding architectures introduced in **[GAP-net](https://github.com/mengziyi64/GAP-net)**.
